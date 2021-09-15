@@ -1,0 +1,505 @@
+/* Start Variable */
+:root{
+    --main-color: #10cab7;
+    --secondary-color: #2c4755;
+    --section-padding: 60px;
+    --section-background: #f6f6f6;
+    --main-duration: 0.3s;
+}
+/* End Variables */
+
+/* Start Global Rules */
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Work Sans', sans-serif;
+}
+.parent{
+    background-color: #eee;
+}
+.container{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: #aaa; */
+}
+/* Small */
+@media (min-width: 768px) {
+    .container{
+        width: 750px;
+    }
+}
+/* Medium */
+@media (min-width: 992px) {
+    .container{
+        width: 970px;
+    }
+}
+/* Large */
+@media (min-width: 1200px) {
+    .container{
+        width: 1170px;
+    }
+}
+/* End Global Rules */
+
+/* Start Components */
+    /* Components are elements that are used in multiple places with the same styles */
+    .special-heading {
+        color: #ebeced;
+        font-size: 100px;
+        letter-spacing: -3px;
+        text-align: center;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .special-heading + p {
+        margin: -30px 0 0 0;
+        text-align: center;
+        font-size: 20px;
+        color: #797979;
+    }
+
+    @media (max-width: 767px) {
+        /* This is for small screens 'like mobiles' */
+        .special-heading {
+            font-size: 75px;
+        }
+
+        .special-heading + p {
+            font-size: 16px;
+            margin-top: -20px;
+        }
+    }
+/* End Components */
+
+/* Start Header */
+.header{
+    padding: 20px;
+}
+.header .container{
+    display: flex;
+    flex-flow: row nowrap; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo{
+    width: 80px;
+}
+
+.header .links{
+    position: relative;
+    /* because the dropdown ul will have position: absolute to this parent class */
+}
+
+.header .links:hover .icon span:nth-child(2){
+    width: 100%;
+}
+
+.header .links .icon{
+    width: 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    /* wrap means allow the line to break to multiple lines */
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.header .links .icon span {
+    background-color: #333;
+    margin-bottom: 5px;
+    height: 2px;
+}
+
+
+.header .links .icon span:first-child {
+    width: 100%;
+}
+
+.header .links .icon span:nth-child(2) {
+    width: 60%;
+    transition: var(--main-duration);
+}
+
+.header .links .icon span:last-child {
+    width: 100%;
+}
+
+.header .links ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f6;
+    position: absolute; 
+    /* Will be relative to its parent which is the div.links */
+    right: 0;
+    top: calc(100% + 15px); 
+    /* top: 100% means that the ul will be away from the top of its parent (div.links) */
+    min-width: 200px;
+
+    display: block;
+    /* display: none; */
+
+    z-index: 9999;
+}
+
+.header .links ul.hide{
+    display: none;
+}
+
+/* .header .links:hover ul {
+    display: block;
+} */
+
+.header .links ul::before{
+    content: "";
+    position: absolute;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #f6f6f6 transparent;
+    right: 5px;
+    top: -20px;
+}
+
+.header .links ul li a {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #222;
+    transition: var(--main-duration);
+}
+
+.header .links ul li a:hover {
+    padding-left: 25px;
+    /* Remember the default padding from all directions is 15px, what happens here is that when a specific anchor is hovered, we want it to move to right a little but, so we make it increase its padding from the left (25px instead of 15px) */
+}
+
+.header .links ul li:not(:last-child) a {
+    border-bottom: 1px solid #ddd;
+}
+/* End Header */
+
+/* Start Landing Section */
+.landing{
+    background-image: url('../images/landing.jpg');
+    background-size: cover;
+    height: calc(100vh - 64px);
+    /* 64px is the height of the header section */
+    position: relative;
+}
+
+.landing .intro-text{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    /* This is how to center the text in the parent element using transfrom */
+
+    width: 320px;
+    max-width: 100%;
+}
+.landing .intro-text h1 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 5-px;
+    color: var(--main-color);
+}
+.landing .intro-text p{
+    font-size: 19px;
+    line-height: 1.8;
+}
+/* End Landing Section */
+
+/* Start Features */
+.features{
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-color: var(--section-background);
+}
+.features .container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+.features .feat {
+    padding: 20px;
+    text-align: center;
+}
+.features .feat i {
+    color: var(--main-color);
+}
+.features .feat h3 {
+    font-weight: 800; /* extra bold */
+    margin: 30px 0;
+}
+.features .feat p {
+    line-height: 1.8;
+    color: #777;
+    font-size: 17px;
+}
+/* End Features */
+
+/* Start Services */
+ .sercives {
+     padding-top: var(--section-padding);
+     padding-bottom: var(--section-padding);
+ }
+ .services .services-content {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+     grid-gap: 30px;
+     margin-top: 100px;
+ }
+
+ .services .services-content .srv {
+    display: flex;
+    margin-bottom: 40px;
+ }
+
+ @media (max-width: 767px) {   
+    .services .services-content .srv   {
+        flex-direction: column;
+        text-align: center;
+    }
+ }
+
+ .services .services-content .srv i {
+     color: var(--main-color);
+     flex-basis: 60px;
+ }
+
+ .services .services-content .srv .text {
+     flex: 1;
+ }
+
+ .services .services-content .srv .text h3 {
+    margin: 0 0 20px 0;
+ }
+
+ .services .services-content .srv .text p {
+    color: #444;
+    font-weight: 300;
+    line-height: 1.6;
+ }
+ .services .services-content .image {
+     text-align: center;
+     position: relative;
+     /* relative because the pseudo elements (before and after) of this div will be absolute */
+ }
+ .services .services-content .image::before {
+     content: '';
+     position: absolute;
+     background-color: var(--secondary-color);
+     width: 100px;
+     height: calc(100% + 100px);
+     top: -50px;
+     right: 0;
+     z-index: -1;
+ }
+ .services .services-content .image img {
+     width: 260px;
+ }
+
+ @media (max-width: 1199px) {
+    /* this will be applied on SMALL and MEDIUM screens (e.g. mobiles and tablets) */
+    /* in ohter words: any device except the large screens, because in these small and medium screens, the image - which is the 3rd column - will come below, not beside the first 2 columns */
+    .image-column {
+        display: none;
+    }
+    /* Simply we will hide the image so the image will appear only on large screens and above */
+ }
+/* End Services */
+/* Start Portfolio */
+ .portfolio {
+     padding-top: var(--section-padding);
+     padding-bottom: var(--section-padding);
+     background-color: var(--section-background);
+ }
+
+ .portfolio .portfolio-content {
+     display: grid;
+     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+     grid-gap: 30px;
+     margin-top: 80px;
+ }
+ .portfolio .portfolio-content .card {
+     background-color: white;
+     box-shadow: 0 0 1px 0px #ccc;
+     /*
+      box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit;
+     */
+ }
+ .portfolio .portfolio-content .card img {
+    width: 100%;
+    max-width: 100%;
+    height: 235px;
+ }
+ .portfolio .portfolio-content .card .info {
+    padding: 20px;
+ }
+ .portfolio .portfolio-content .card .info h3{
+     margin: 0;
+ }
+ .portfolio .portfolio-content .card .info p{
+     color: #777;
+     line-height: 1.6;
+     margin-bottom: 0;
+ }
+ @media (max-width: 767px) {
+    .portfolio .portfolio-content .card .info {
+        text-align: center;
+    }
+ }
+/* End Portfolio */
+/* Start About */
+.about {
+    padding-top: var(--section-padding);
+    padding-bottom: calc(var(--section-padding) + 60px);
+}
+.about .about-content {
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap; /* allow multiple lines */
+    flex-direction: row;
+    justify-content: space-between;
+}
+@media (max-width: 991px) {
+    .about .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+.about .about-content .image {
+    position: relative;
+    /* because this div.image will have children in ::before and ::after */
+    width: 250px;
+    height: 375px;
+}
+@media (max-width: 991px) {
+    .about .about-content .image {
+        margin: 0 auto 60px auto;
+    }
+}
+.about .about-content .image::before {
+    content: "";
+    position: absolute;
+    background-color: #ebeced;
+    height: calc(100% + 80px);
+    width: 100px;
+    top: -40px;
+    left: -20px;
+    z-index: -1;
+}
+.about-content .image::after {
+    content: "";
+    position: absolute;
+    border-left: 80px solid var(--main-color);
+    border-bottom: 80px solid var(--main-color);
+    height: 300px;
+    width: 120px;
+    top: -40px;
+    right: -150px;
+    z-index: -1;
+}
+/* @media (max-width: 991px) {
+    .about-content .image::before,
+    .about-content .image::after {
+        display: none;
+    }
+} */
+.about-content .image img {
+    max-width: 100%;
+    height: 100%;
+}
+.about-content .text {
+    flex-basis: calc(100% - 500px);
+}
+.about-content .text P:first-of-type {
+    font-weight: bold;
+    line-height: 2;
+    margin-bottom: 50px;
+}
+.about-content .text hr {
+    width: 50%;
+    display: inline-block;
+    border-style: solid;
+    border-color: var(--main-color);
+    border-width: 3px;
+    border-radius: 2px;
+}
+.about-content .text P:last-of-type {
+    line-height: 2;
+    color: #777;
+}
+/* End About */
+/* Start Contact */
+ .contact {
+     padding-top: var(--section-padding);
+     padding-bottom: var(--section-padding);
+    background-color: var(--section-background);
+}
+ .contact .info {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    text-align: center;
+}
+.contact .info .label {
+    color: var(--secondary-color);
+    letter-spacing: -1.2px;
+    margin-bottom: 15px;
+}
+.contact .info .label,
+.contact .info .link {
+    font-weight: 800; /* extra bold */
+    font-size: 35px;
+}
+.contact .info .link {
+    display: block;
+    color: var(--main-color);
+    text-decoration: none;
+}
+.contact .info .social {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 16px;    
+}
+.contact .info .social i {
+    margin-left: 10px;
+    color: var(--secondary-color);
+}
+.contact .info .social i:hover {
+    color: var(--main-color);
+    transition: var(--main-duration);
+}
+@media (max-width: 767px) {
+    .contact .info .label,
+    .contact .info .link {
+        font-size: 25px;
+    }
+}
+/* End Contact */
+/* Start Footer */
+.footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 30px 10px;
+    text-align: center;
+    font-size: 18px;
+}
+.footer span {
+    font-weight: bold;
+    color: var(--main-color);
+}
+/* End Footer */
