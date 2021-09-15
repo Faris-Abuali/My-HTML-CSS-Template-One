@@ -437,6 +437,7 @@ body{
     border-color: var(--main-color);
     border-width: 3px;
     border-radius: 2px;
+    background-color: var(--main-color);
 }
 .about-content .text P:last-of-type {
     line-height: 2;
