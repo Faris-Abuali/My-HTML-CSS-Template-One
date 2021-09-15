@@ -488,6 +488,7 @@ body{
     .contact .info .label,
     .contact .info .link {
         font-size: 25px;
+        max-width: 100%;
     }
 }
 /* End Contact */
